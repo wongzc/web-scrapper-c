@@ -1,13 +1,13 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import undetected_chromedriver as uc
-import time
+
 
 class WebScraper:
+    """ utility function for driver"""
     def __init__(self, headless=True):
         options = uc.ChromeOptions()
         if headless:
@@ -30,10 +30,6 @@ class WebScraper:
         elem.send_keys(text)
         if press_enter:
             elem.send_keys(Keys.ENTER)
-
-    def scroll_to_bottom(self):
-        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(2)
 
     def get_elements(self, selector, by=By.CSS_SELECTOR):
         return self.driver.find_elements(by, selector)
